@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom"
 import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Login from "./components/Login";
+import { Button } from "@mui/material";
+import SignedInHome from "./components/SignedInHome";
 
 function App() {
 
@@ -17,22 +19,13 @@ const [currentUser, setCurrentUser] = useState(null)
      }
    })
  }, []);
-   function logout(){
-     fetch("/logout", { method: "DELETE"}).then(r=>{
-       if (r.ok){
-         setCurrentUser(null)
-       }
-     })
-   }
+ 
   
   
   return (
     <div className="App">
      {currentUser ? (
-       <div>
-         <h1>Welcome {currentUser.username} </h1>
-         <button onClick={logout}>Log Out</button>
-       </div>
+      <SignedInHome setCurrentUser={setCurrentUser} currentUser={currentUser} />
      ) :
      <div>
      <Navbar/>
