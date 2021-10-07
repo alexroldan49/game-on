@@ -5,10 +5,12 @@ import Signup from './components/Signup';
 import Login from "./components/Login";
 import { Button } from "@mui/material";
 import SignedInHome from "./components/SignedInHome";
+import Profile from "./components/Profile";
 
 function App() {
 
 const [currentUser, setCurrentUser] = useState(null)
+const [users, setUsers] = useState([])
 
  useEffect(()=>{
    fetch("/me")
@@ -20,12 +22,31 @@ const [currentUser, setCurrentUser] = useState(null)
    })
  }, []);
  
+ useEffect(()=>{
+    fetch("/users")
+    .then(r=> r.json())
+    .then(data => setUsers(data))
+ },[])
   
+const profilePages = users.map(user=>{
+  return( 
+          <Route path={`/profile/${user.username}`}>
+            <Profile currentUser={currentUser} user={user}/>
+          </Route>
+          )
+})
   
   return (
     <div className="App">
      {currentUser ? (
-      <SignedInHome setCurrentUser={setCurrentUser} currentUser={currentUser} />
+       <div>
+         <Switch>
+            <Route path='/'>
+            <SignedInHome setCurrentUser={setCurrentUser} currentUser={currentUser} />
+            </Route>
+            {profilePages}
+          </Switch>
+      </div>
      ) :
      <div>
      <Navbar/>
@@ -36,6 +57,7 @@ const [currentUser, setCurrentUser] = useState(null)
        <Route path="/login">
          <Login setCurrentUser={setCurrentUser}/>
        </Route>
+      
      </Switch>
      </div>
      }

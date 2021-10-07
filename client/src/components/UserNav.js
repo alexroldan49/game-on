@@ -1,11 +1,12 @@
 import React from "react";
 import { Button } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 
 function UserNav({setCurrentUser, currentUser}){
-
-    
+  
     function logout(){
         fetch("/logout", { method: "DELETE"}).then(r=>{
           if (r.ok){
@@ -17,11 +18,13 @@ function UserNav({setCurrentUser, currentUser}){
     return(
         <ul className="navbar">
             <li>
+                <Link to={`/profile/${currentUser.username}`} >
             <Avatar
                 alt="profile pic"
              src={currentUser.image}
                 sx={{ width: 50, height: 50 }}
             />
+            </Link>
             </li>
             <li>
                 <h2>{currentUser.username} </h2>

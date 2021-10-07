@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     end
    end
 
+   def index
+    render json: User.all
+   end
+
 
     #get "/me" , to: "user#show"
    def show

@@ -3,7 +3,7 @@ import Post from "./Post";
 import UserNav from "./UserNav";
 import CreatePost from "./CreatePost";
 
-function SignedInHome( { setCurrentUser, currentUser}){
+function SignedInHome( {setCurrentUser, currentUser}){
 
     const [displayPosts, setDisplayPosts] = useState([])
     const [clicked, setClicked] = useState("")
@@ -13,17 +13,19 @@ function SignedInHome( { setCurrentUser, currentUser}){
         .then(r => r.json())
         .then(posts => setDisplayPosts(posts.reverse()))
     }, [clicked])
-
-    // const reversedPosts = displayPosts.reverse()
+    function addPost(newPost){
+        setDisplayPosts([newPost, ...displayPosts])
+    }
+   
     const mappedPosts = displayPosts.map(post=>{
-       return <Post setClicked={setClicked}  setDisplayPosts={setDisplayPosts} currentUser={currentUser} post={post} />
+       return <Post displayPosts={displayPosts} setClicked={setClicked}  setDisplayPosts={setDisplayPosts} currentUser={currentUser} post={post} />
     })
 
 return(
     <div className="home">
         <UserNav currentUser={currentUser} setCurrentUser={setCurrentUser}/>
         <div>
-            <CreatePost setClicked={setClicked}/>
+            <CreatePost addPost={addPost} setClicked={setClicked}/>
         </div>
         <div className="content">
             {mappedPosts}

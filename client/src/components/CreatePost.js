@@ -10,25 +10,54 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { styled } from '@mui/material/styles';
 import { Button } from "@mui/material";
 import { useHistory } from "react-router";
+import { EditNotifications } from "@mui/icons-material";
 
 
-function CreatePost({setClicked}){
+function CreatePost({addPost}){
     const [option, setOption] = useState("")
     const [content, setContent] = useState("")
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
     const gameOptions = ["New World", "Destiny 2", "Halo Infinite", "MineCraft", "Valorant", "OverWatch", "Super Smash Bros Ultimate", "Legends of Zelda: Breath of the Wild", "Apex Legends", "Rainbow Six Siege"]
+    // const [fileInput, setFileInput] = useState("")
+    const [selectedFile, setSelectedFile] = useState("")
+    const [previewSource, setPreviewSource] = useState("")
+
     
     const Input = styled('input')({
         display: 'none',
       });
     
+    // function uploadImage(){
+    //    const formData = new FormData()
+    //    formData.append("file", image)
+    //    formdata.append("upload_preset", "gbkccvjx")
+    //    fetch("https://api.cloudinary.com/v1_1/dnbus7ifm/image/upload", formData)
+    //    .then(r => )
+    // }
+    const handleFileInputChange = (e)=>{
+        const file = e.target.files[0]
+        previewFile(file)
+    }
+
+    const previewFile = (file)=>{
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = () =>{
+            setPreviewSource(reader.result)
+        }
+    }
+    function clearImage(){
+        setPreviewSource('')
+    }
+      
     const createdPost = {
         game: option,
         description: content,
-        image: image
+        image: selectedFile.secure_url
     }
     function handleSubmit(e){
         e.preventDefault()
+        
         fetch("/posts",{
             method: "POST",
             headers: {"content-type": "application/json"},
@@ -36,7 +65,7 @@ function CreatePost({setClicked}){
         }
         ).then(r => {
             if (r.ok){
-            return r.json().then(r=> setClicked(r))
+            return r.json().then(r=> addPost(r))
             }else{
                 return r.json().then(errors => Promise.reject(errors))
             }
@@ -44,6 +73,23 @@ function CreatePost({setClicked}){
       setOption("")
       setContent("")
     }
+
+
+    const uploadImage = (encodedImage) =>{
+        const formData = new FormData()
+            formData.append("file", previewSource)
+            formData.append("upload_preset", "gbkccvjx")
+            fetch("https://api.cloudinary.com/v1_1/dnbus7ifm/image/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(r => {
+                if(r.ok){
+                    r.json().then(r => setSelectedFile(r))
+                }
+            } )
+    }
+    
     
     function handleChange(e){
         setOption(e.target.value)
@@ -90,11 +136,20 @@ return(
                 />
         <div className="upload">
         <label htmlFor="icon-button-file">
-        <Input accept="image/*" id="icon-button-file" type="file" />
+        <Input onChange={handleFileInputChange} value={previewFile} accept="image/*" id="icon-button-file" type="file" />
         <IconButton size="large" color="secondary" aria-label="upload picture" component="span">
           <PhotoCamera />
         </IconButton>
         </label>
+        {previewSource &&(
+            <div>
+            <img src={previewSource} alt="chosen" style={{height:"200px"}} />
+            <div>
+            <Button onClick={uploadImage} variant="contained" color="primary" size="small" sx={{height:20, width:30}} disableElevation >Select</Button>
+            <Button onClick={clearImage}  variant="contained" color="error" size="small" sx={{height:20, width:30}} disableElevation>x</Button>
+            </div>
+            </div>
+        ) }
         </div>
         <div className="postbtn">
             <Button onClick={handleSubmit} variant="contained" disableElevation>Post</Button>

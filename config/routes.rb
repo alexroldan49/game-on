@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
   # get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
   resources :posts
-  resources :user_posts, only:[:create]
+  resources :comments, only:[:create, :index]
+  # resources :user_posts, only:[:create]
 
   post "/signup", to: "users#create"
   get "/me" , to: "users#show"
+  get "/users" , to: "users#index"
   patch "/profile", to: "users#update"
 
   post "/login", to: "sessions#create"
