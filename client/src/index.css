@@ -28,7 +28,7 @@ code {
   display: flex;
   flex-direction:row;
   align-items: center;
-  height: 80px
+  height: 90px
 }
 .content{
   display: flex;
@@ -52,4 +52,12 @@ code {
   justify-content: right;
   margin-right: 50px;
   margin-bottom: 20px;
+}
+.pencil{
+  color: black; 
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.pencil:hover{
+  opacity: 1
 }

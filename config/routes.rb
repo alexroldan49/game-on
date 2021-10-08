@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   get "/me" , to: "users#show"
   get "/users" , to: "users#index"
-  patch "/profile", to: "users#update"
+  patch "/update/:id", to: "users#update"
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

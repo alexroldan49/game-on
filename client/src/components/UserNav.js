@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 
 
 function UserNav({setCurrentUser, currentUser}){
-  
+    
+    const history = useHistory()
+    
     function logout(){
         fetch("/logout", { method: "DELETE"}).then(r=>{
           if (r.ok){
@@ -15,16 +17,22 @@ function UserNav({setCurrentUser, currentUser}){
         })
       }
 
+      function handleLink(){
+        history.push(`/profile/${currentUser.username}`)
+      }
+      
     return(
         <ul className="navbar">
             <li>
-                <Link to={`/profile/${currentUser.username}`} >
+                {/* <Link to={`/profile/${currentUser.username}`} > */}
             <Avatar
                 alt="profile pic"
-             src={currentUser.image}
+                src={currentUser.image}
                 sx={{ width: 50, height: 50 }}
+                onClick={handleLink}
+                
             />
-            </Link>
+            
             </li>
             <li>
                 <h2>{currentUser.username} </h2>
