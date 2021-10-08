@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
-import { Chip } from "@mui/material";
+import { Chip, Typography } from "@mui/material";
 
 function Login({setCurrentUser}){
     let history = useHistory()
@@ -17,6 +17,7 @@ function Login({setCurrentUser}){
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
     
     function handleSubmit(e){
         e.preventDefault()
@@ -30,6 +31,9 @@ function Login({setCurrentUser}){
                 if (r.ok) {
                     r.json()
                     .then(user => setCurrentUser(user))
+                }else{
+                    r.json()
+                    .then(error => setError(error.errors))
                 }
             })
     }
@@ -63,6 +67,7 @@ function Login({setCurrentUser}){
             value={password}
             onChange={e=> setPassword(e.target.value)}
             />
+            <Typography sx={{marginBottom: 1, fontWeight: "bold"}} color="error" >{error}</Typography>
             <Button type="submit" variant="contained" sx={{height:55}} >submit</Button>
             <Chip sx={{marginLeft: 2, marginRight: 2, marginTop: 2}} color="secondary" value="/"  label="Home" onClick={redirectHome} />
             <Chip sx={{marginLeft: 2, marginRight: 2, marginTop: 2}} color="secondary" value="/login" label="signup" onClick={redirectSignup} />

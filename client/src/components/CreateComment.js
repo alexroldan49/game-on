@@ -30,7 +30,7 @@ function CreateComment({currentUser, post}){
     }
 
 return(
-        <div>
+        <div className="add-comment">
             <Box sx={{ marginLeft: 27,}} component="form">
             <h4>Add Comment</h4>
                 <TextField

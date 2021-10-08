@@ -31,11 +31,12 @@ body {
   text-align: center;
   width: 600px;
   background-color: rgba(0,0,0, 0.4);
-  margin-left: 90px;
+  margin-left: 250px;
   margin-top: 50px;
 }
 .bg-text {
   font-family: 'Press Start 2P', cursive;
+  background-color: rgba(0,0,0, 0.6);
   color: white;
   font-weight: bold;
   position: absolute;
@@ -43,10 +44,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  width: 80%;
+  width: 60%;
   padding: 20px;
-  text-align: left;
-  margin-left: 90px;
+  text-align: center;
+  margin-left: 40px;
 }
 .black{
   background-color: black;
@@ -54,6 +55,9 @@ body {
 .rows{
   display: grid;
   columns:auto;
+}
+.add-comment{
+background-color: rgb(54, 54, 54);
 }
 .home{
   background-image: url("https://i.ibb.co/r6TMXwq/8-80263-cool-blurry-image-background-1920x1080-simple.jpg");
@@ -63,6 +67,8 @@ body {
 }
 .gameFont{
   font-family: 'Press Start 2P', cursive;
+  color: white
+  
 }
 .blurred{
   background-image: url("https://i.ibb.co/9230cXT/blur-background-6z-1920x1080.jpg");
