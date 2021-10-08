@@ -11,10 +11,13 @@ import { Button } from "@mui/material";
 
 
 function Profile({ currentUser, user}){
+    const [form, setForm] = useState(false)
+    // const [updatedBio, setUpdatedBio] = useState(user.profile_image)
+    // const [updatedImage, setUpdatedImage] = useState(user.bio)
     const [previewSource, setPreviewSource] = useState("")
     const [selectedFile, setSelectedFile] = useState("")
-    const [form, setForm] = useState(false)
     const [bio, setBio] = useState("")
+    const [updatedUser, setUpdatedUser] = useState(user)
 
     const handleFileInputChange = (e)=>{
         const file = e.target.files[0]
@@ -36,10 +39,12 @@ function Profile({ currentUser, user}){
     function handleToggle(){
         setForm(!form)
     }
+    // setUpdatedBio(updatedUser.bio)
+    // setUpdatedImage(updatedUser.Image)
     
     const updatedProfile = {
         bio : bio,
-        profile_image : previewSource
+        profile_picture : selectedFile.secure_url
     }
 
     function handleSubmit(e){
@@ -50,7 +55,8 @@ function Profile({ currentUser, user}){
             headers: { "Content-type": "application/json"},
             body: JSON.stringify(updatedProfile)
         }).then(r => r.json())
-        
+        .then(user => setUpdatedUser(user))
+        .then( console.log(selectedFile))
     }
     
     
@@ -69,22 +75,20 @@ function Profile({ currentUser, user}){
             } )
     }
     
-    
-    console.log(user)
     return(
         <>
         <div className="content">
             {/* <UserNav setCurrentUser={user} /> */}
             <Avatar
                 alt="profile pic"
-                src={user.image}
+                src={updatedUser.profile_picture}
                 sx={{ margin: 3, width: 200, height: 200 }}/>
         </div>
         <div className="content">
                 <h1>{user.username}</h1>
         </div>
         <div className="content">
-                {user.bio ? 
+                {updatedUser.bio ? 
             <Box sx={{ p: 2,
                 bgcolor: 'background.default',
                 display: 'row',

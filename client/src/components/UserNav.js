@@ -27,7 +27,7 @@ function UserNav({setCurrentUser, currentUser}){
                 {/* <Link to={`/profile/${currentUser.username}`} > */}
             <Avatar
                 alt="profile pic"
-                src={currentUser.image}
+                src={currentUser.profile_picture}
                 sx={{ width: 50, height: 50 }}
                 onClick={handleLink}
                 
