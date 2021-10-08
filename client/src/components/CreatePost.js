@@ -17,7 +17,7 @@ function CreatePost({addPost}){
     const [option, setOption] = useState("")
     const [content, setContent] = useState("")
     // const [image, setImage] = useState("")
-    const gameOptions = ["New World", "Destiny 2", "Halo Infinite", "MineCraft", "Valorant", "OverWatch", "Super Smash Bros Ultimate", "Legends of Zelda: Breath of the Wild", "Apex Legends", "Rainbow Six Siege"]
+    const gameOptions = ["New World", "Destiny 2", "Halo Infinite", "MineCraft", "Valorant", "OverWatch", "Super Smash Bros Ultimate", "Legends of Zelda: Breath of the Wild", "Apex Legends", "Rainbow Six Siege", "Fortnite", "Sea of Thieves"]
     // const [fileInput, setFileInput] = useState("")
     const [selectedFile, setSelectedFile] = useState("")
     const [previewSource, setPreviewSource] = useState("")
@@ -72,6 +72,7 @@ function CreatePost({addPost}){
         })
       setOption("")
       setContent("")
+      setPreviewSource('')
     }
 
 
