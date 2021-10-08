@@ -51,14 +51,14 @@ function Post( { displayPosts, setDisplayPosts, currentUser, post} ){
 
 return(
     <div>
-        <Card sx={{ maxWidth: 700, minWidth: 700, minHeight:250, marginLeft: 20, marginRight:20, marginTop: 10, marginBottom:7, backgroundColor:"#262626", color: "green" }}>
+        <Card sx={{ maxWidth: 700, minWidth: 700, minHeight:250, marginLeft: 20, marginRight:20, marginTop: 10, marginBottom:7, backgroundColor:"#262626",fontSize: 25, color: "green",  }}>
             <CardHeader
                 sx={{backgroundColor: "#434343"}}
                 avatar={
                     <Avatar
                      alt="profile pic"
                      src={post.author.profile_picture}
-                     sx={{width: 40, height: 40}}
+                     sx={{width: 50, height: 50}}
                      />
                 }
                 title={post.author.username}
@@ -67,7 +67,7 @@ return(
             <CardMedia/>
             <CardContent>
                 <Typography 
-                sx={{color: "white"}}
+                sx={{color: "white", margin: 2}}
                 variant="h6"
                 color="text.primary"
 

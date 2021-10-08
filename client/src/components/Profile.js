@@ -77,15 +77,15 @@ function Profile({ currentUser, user}){
     
     return(
         <>
+        
         <div className="content">
-            {/* <UserNav setCurrentUser={user} /> */}
             <Avatar
                 alt="profile pic"
                 src={updatedUser.profile_picture}
-                sx={{ margin: 3, width: 200, height: 200 }}/>
+                sx={{ margin: 10, width: 200, height: 200 }}/>
         </div>
         <div className="content">
-                <h1>{user.username}</h1>
+                <h1 className="gameFont">{user.username}</h1>
         </div>
         <div className="content">
                 {updatedUser.bio ? 
@@ -95,10 +95,10 @@ function Profile({ currentUser, user}){
                 gridTemplateColumns: { md: '1fr 1fr' },
                 gap: 2,
                 textAlign: "center",
-                width: 300
+                width: 700
                 }}>
                 <Paper>
-                <Typography sx={{fontSize: 30}}>{user.bio}</Typography>
+                <Typography sx={{fontSize: 30, margin: 10}}>{user.bio}</Typography>
                 </Paper>
             </Box>:
                 <Box sx={{ p: 2,
@@ -113,6 +113,7 @@ function Profile({ currentUser, user}){
                     <Typography sx={{fontSize: 30, color: "lightgrey"}}>Bio empty...</Typography>
                     </Paper>
                 </Box>
+                
             }
         </div>
         {user.id === currentUser.id ?
@@ -120,7 +121,7 @@ function Profile({ currentUser, user}){
         <div className="content">
             <CreateIcon
             className="pencil"
-             sx={{marginRight: 30, marginBottom: 2}}
+             sx={{marginRight: 30, marginBottom: 5}}
              fontSize="large"
              onClick={handleToggle}
              />
@@ -134,7 +135,7 @@ function Profile({ currentUser, user}){
                     gridTemplateColumns: { md: '1fr 1fr' },
                     gap: 2,
                     minWidth: 600,
-                    marginBottom: 15
+                    marginBottom: 30
                     }}>
                     <Paper sx={{ bgcolor: '#4c7294'}}>
                     <Typography sx={{textAlign:"center", padding: "5px",fontSize: 24, color: "white"}}>Image</Typography>
@@ -177,6 +178,7 @@ function Profile({ currentUser, user}){
             </> :
             <div></div>
     }
+    
         </>
     )
 }

@@ -10,14 +10,14 @@ function Comment({comment}){
 
     return(
         <div>
-            <Card sx={{ width: 350, minHeight:50, marginLeft: 18, marginRight:10, marginTop: 5, marginBottom:7, backgroundColor:"white", color: "black" }}>
+            <Card sx={{ width: 350, minHeight:140, marginLeft: 18, marginRight:10, marginTop: 5, marginBottom:7, backgroundColor:"white", color: "black" }}>
             <CardHeader
                 sx={{backgroundColor: "#434343", height: 10, color: "white"}}
                 avatar={
                     <Avatar
                      alt="profile pic"
                      src={comment.user.profile_picture}
-                     sx={{width: 20, height: 20}}
+                     sx={{width: 30, height: 30}}
                      />
                 }
                 title={comment.user.username}

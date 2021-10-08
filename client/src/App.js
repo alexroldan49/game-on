@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import SignedInHome from "./components/SignedInHome";
 import Profile from "./components/Profile";
 import UserNav from "./components/UserNav";
+import UnAuthHome from "./components/UnAuthHome";
 
 function App() {
 
@@ -33,7 +34,9 @@ const profilePages = users.map(user=>{
   return( 
           <Route path={`/profile/${user.username}`}>
             <UserNav currentUser={user} />
+            <div className="blurred">
             <Profile currentUser={currentUser} user={user}/>
+            </div>
           </Route>
           )
 })
@@ -44,7 +47,8 @@ const profilePages = users.map(user=>{
   return (
     <div className="App">
      {currentUser ? (
-       <div>
+       <div className="black" >
+      
          <Switch>
          {/* <Route path={`/profile/:username`}>
             <Profile currentUser={currentUser} user={filterUser[0]}/>
@@ -56,9 +60,13 @@ const profilePages = users.map(user=>{
           </Switch>
       </div>
      ) :
-     <div>
-     <Navbar/>
+    //  <div>
+    //  <Navbar/>
+    //  <UnAuthHome/>
      <Switch>
+       <Route exact path="/">
+         <UnAuthHome />
+       </Route>
        <Route path="/signup">
          <Signup setCurrentUser={setCurrentUser}/>
        </Route>
@@ -67,7 +75,7 @@ const profilePages = users.map(user=>{
        </Route>
       
      </Switch>
-     </div>
+    //  </div>
      }
      
     </div>

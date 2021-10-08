@@ -1,10 +1,19 @@
 import React, {useState, useEffect} from "react"
-import {Link} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
+import { Chip } from "@mui/material";
 
 function Login({setCurrentUser}){
+    let history = useHistory()
+
+    function redirectHome(e){
+        history.push("/")
+    }
+    function redirectSignup(e){
+        history.push("/signup")
+    }
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -28,16 +37,26 @@ function Login({setCurrentUser}){
     
     
     return(
-        <div>
-        <Box component="form" onSubmit={handleSubmit}>
+        <div className="login-out">
+        <Box
+        sx={{backgroundColor:"#8d9be5",
+            textAlign: "center",
+            padding:20,
+            marginTop: "200px",
+            marginBottom: "200px"
+            }}
+         component="form" onSubmit={handleSubmit}>
+             <div className="rows" >
             <h1>Login</h1>
             <TextField
+            sx={{marginBottom:2}}
              label="username"
              type="text"
              value={username}
              onChange={e=> setUsername(e.target.value)}
              />
             <TextField 
+            sx={{marginBottom:2}}
             label="password"
             id="outlined-password-input"
             type="password"
@@ -45,6 +64,9 @@ function Login({setCurrentUser}){
             onChange={e=> setPassword(e.target.value)}
             />
             <Button type="submit" variant="contained" sx={{height:55}} >submit</Button>
+            <Chip sx={{marginLeft: 2, marginRight: 2, marginTop: 2}} color="secondary" value="/"  label="Home" onClick={redirectHome} />
+            <Chip sx={{marginLeft: 2, marginRight: 2, marginTop: 2}} color="secondary" value="/login" label="signup" onClick={redirectSignup} />
+            </div>
         </Box>
     </div>
     )

@@ -8,8 +8,74 @@ body {
 }
 
 /* .App{
-  background-image: url(https://i.ibb.co/Q8gJRGD/background.png);
+    
+  
 } */
+.home-blur{
+  background-image: url("https://i.ibb.co/F06pvpt/Game-Inn-home-page.png");
+  
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  /* Full height */
+  height: 1000px; 
+  background-attachment: fixed;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-btns{
+  text-align: center;
+  width: 600px;
+  background-color: rgba(0,0,0, 0.4);
+  margin-left: 90px;
+  margin-top: 50px;
+}
+.bg-text {
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: left;
+  margin-left: 90px;
+}
+.black{
+  background-color: black;
+}
+.rows{
+  display: grid;
+  columns:auto;
+}
+.home{
+  background-image: url("https://i.ibb.co/r6TMXwq/8-80263-cool-blurry-image-background-1920x1080-simple.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+}
+.gameFont{
+  font-family: 'Press Start 2P', cursive;
+}
+.blurred{
+  background-image: url("https://i.ibb.co/9230cXT/blur-background-6z-1920x1080.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.login-out{
+  background-color: #2c2d30;
+  display: flex;
+  justify-content: center;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
