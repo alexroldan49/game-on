@@ -15,8 +15,13 @@ function UserNav({setCurrentUser, currentUser}){
             setCurrentUser(null)
           }
         })
+        history.push("/")
       }
 
+      function goHome(){
+        history.push("/")
+      }
+      
       function handleLink(){
         history.push(`/profile/${currentUser.username}`)
       }
@@ -35,9 +40,15 @@ function UserNav({setCurrentUser, currentUser}){
             
             </li>
             <li>
-                <h2>{currentUser.username} </h2>
+              
+                <h2 className="username">{currentUser.username} </h2>
             </li>
-            <Button sx={{marginLeft: 3}} variant="outlined" size="small" onClick={logout}>Log Out</Button>
+                <li>
+                <Button sx={{marginLeft: 3}} variant="outlined" size="small" onClick={logout}>Log Out</Button>
+                </li>
+            <li href="#" onClick={goHome} >
+              <h2 className="logo" >GAME-INN</h2>
+            </li>
         </ul>
     )
 }

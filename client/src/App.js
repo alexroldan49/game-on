@@ -55,7 +55,7 @@ const profilePages = users.map(user=>{
           </Route> */}
           {profilePages}
             <Route path='/'>
-            <SignedInHome setCurrentUser={setCurrentUser} currentUser={currentUser} />
+            <SignedInHome users={users} setCurrentUser={setCurrentUser} currentUser={currentUser} />
             </Route>
           </Switch>
       </div>

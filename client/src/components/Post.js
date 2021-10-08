@@ -11,10 +11,13 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import Comment from "./Comment"
 import CreateComment from "./CreateComment";
+import { useHistory } from "react-router-dom";
 
 function Post( { displayPosts, setDisplayPosts, currentUser, post} ){
     const [expanded, setExpanded] = useState(false)
 
+    const history = useHistory()
+    
     const ExpandMore = styled((props) => {
         const { expand, ...other } = props;
         return <IconButton {...other} />;
@@ -30,7 +33,9 @@ function Post( { displayPosts, setDisplayPosts, currentUser, post} ){
       const handleExpandClick = () => {
         setExpanded(!expanded);
       };
-    
+    function userLink(){
+        history.push(`/profile/${post.author.username}`)
+    }
     function removePost(){
         setDisplayPosts(displayPosts.filter(po=> po.id !== post.id))
     }
@@ -59,6 +64,7 @@ return(
                      alt="profile pic"
                      src={post.author.profile_picture}
                      sx={{width: 50, height: 50}}
+                     onClick={userLink}
                      />
                 }
                 title={post.author.username}
